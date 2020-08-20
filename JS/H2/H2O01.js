@@ -16,9 +16,11 @@ function setup() {
 }
 
 function draw() {
-  background(bomen);  
-  // image(katerKlein,0,0);
+  background('grey');  
+  image(kater,25,25,400,400);
   keverX+=random(-5,5);
   keverY+=random(-5,5);
-  // image(kever,keverX,keverY);
+  image(kever,keverX,keverY);
+  kever.width= 30;
+  kever.height= 30;
 }
