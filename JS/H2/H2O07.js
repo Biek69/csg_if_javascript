@@ -9,9 +9,9 @@ function setup() {
   textSize(40);
   noStroke();
   vierkanten.push(30);
-  // voeg je eigen naam toe
-  // sorteer de array met namen
-  // verwijder het eerste element uit vierkanten
+  namen.push("Lars");
+  namen.sort();
+  vierkanten.shift();
   noLoop();
 }
 
@@ -20,12 +20,12 @@ function draw() {
     fill('white');
     text(vierkanten[teller],20,48*(teller + 1));
     text("omtrek = " + 4*vierkanten[teller],130,48*(teller + 1));
-    text("opp = ",400,48*(teller + 1));
+    text("opp = " + vierkanten[teller]*vierkanten[teller],400,48*(teller + 1));
     fill('dodgerblue');
     rect(90,48*(teller) + 25,vierkanten[teller],vierkanten[teller]);
   }
   
-  for (var n = 0;n < namen.length;n++) {
+  for (var n = 0;n<namen.length;n++) {
     fill('black');
     text(namen[n],650,48*(n + 1));
   }
