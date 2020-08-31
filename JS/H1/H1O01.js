@@ -2,7 +2,7 @@ function setup() {
   canvas = createCanvas(1000,500);
   background('orange');
   canvas.parent('processing');
-  noLoop();
+  noLoop();m
 }
 
 function draw() {
