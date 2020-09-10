@@ -1,4 +1,4 @@
-var speed = 20;
+var speed = 10;
 var knop = {
     x: 500,
     y: 425,
