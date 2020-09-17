@@ -1,21 +1,11 @@
 var speed = 10;
-var knop = {
-    x: 500,
-    y: 425,
-    teken() {
-        fill("green");
-        rect(knop['x'], knop['y'], 40, 20);
-    },
-    aanraken() {
-
-    }
-};
 var bal = {
     X: 250,
     Y: 250,
+    breedte: 75,
     teken() {
         fill("white");
-        ellipse(bal['X'], bal['Y'], 75);
+        ellipse(bal['X'], bal['Y'], this.breedte);
         bal["X"] = constrain(bal["X"], 37.5, 962.5);
         bal["Y"] = constrain(bal["Y"], 37.5, 812.5);
     },
@@ -35,6 +25,34 @@ var bal = {
     }
 };
 
+var eiland = {
+    x: 500,
+    y: 425,
+    breedte: 150,
+    hoogte: 50,
+    benGeraakt: false,
+
+    wordJeGeraakt(bal) {
+        if (dist(this.x,this.y,bal.X,bal.Y)<=this.breedte/2 + bal.breedte/2) {
+            this.benGeraakt = true;
+        }
+        else{
+            this.benGeraakt = false;
+        }
+    },
+
+    teken() {
+        if (this.benGeraakt == true) {
+            fill('white');
+        }
+        else {
+            fill('green');
+        }
+        ellipse(this.x, this.y, this.breedte,);
+    }
+}
+
+
 function setup() {
     canvas = createCanvas(1000, 850);
     background('silver');
@@ -45,6 +63,7 @@ function setup() {
 function draw() {
     background('silver');
     bal.beweeg();
-    knop.teken();
+    eiland.teken();
     bal.teken();
+    eiland.wordJeGeraakt(bal);
 }

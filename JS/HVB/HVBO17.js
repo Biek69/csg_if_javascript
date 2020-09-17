@@ -46,7 +46,7 @@ var prooi = {
   benGeraakt: false,
   
   wordJeGeraakt(vijand) {
-    if (vijand.x >= this.x - vijand.zijde && vijand.x <= this.x + this.breedte) {
+    if (vijand.x >= this.x - vijand.breedte && vijand.x <= this.x + this.breedte) {
       this.benGeraakt = true;
     }
   },  
