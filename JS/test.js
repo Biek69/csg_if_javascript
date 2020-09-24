@@ -1,13 +1,16 @@
 var speed = 10;
+var dikte = 1000;
+var dunte = 800;
 var bal = {
     X: 250,
     Y: 250,
-    breedte: 75,
+    hoogte: 80,
+    breedte: 100,
     teken() {
         fill("white");
-        ellipse(bal['X'], bal['Y'], this.breedte);
-        bal["X"] = constrain(bal["X"], 37.5, 962.5);
-        bal["Y"] = constrain(bal["Y"], 37.5, 812.5);
+        image(boot, bal['X'], bal['Y'], this.breedte, this.hoogte);
+        bal["X"] = constrain(bal["X"], 0, dikte-this.breedte);
+        bal["Y"] = constrain(bal["Y"],  0, dunte-this.hoogte);
     },
     beweeg() {
         if (keyIsDown(RIGHT_ARROW)) {
@@ -43,7 +46,7 @@ var eiland = {
 
     teken() {
         if (this.benGeraakt == true) {
-            fill('white');
+            fill('yellow');
         }
         else {
             fill('green');
@@ -51,17 +54,20 @@ var eiland = {
         ellipse(this.x, this.y, this.breedte,);
     }
 }
+function preload(){
+    boot = loadImage('images/dikkevetteboot.png')
+}
 
 
 function setup() {
-    canvas = createCanvas(1000, 850);
-    background('silver');
+    canvas = createCanvas(dikte, dunte);
+    background('blue');
     textSize(30);
     canvas.parent('processing');
 }
 
 function draw() {
-    background('silver');
+    background('blue');
     bal.beweeg();
     eiland.teken();
     bal.teken();
