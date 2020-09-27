@@ -1,16 +1,16 @@
 var speed = 10;
 var dikte = 1000;
 var dunte = 800;
-var bal = {
-    X: 250,
-    Y: 250,
+var schip = {
+    X: 100,
+    Y: 100,
     hoogte: 100,
     breedte: 100,
     teken() {
         fill("white");
-        image(boot, bal['X'], bal['Y'], this.breedte, this.hoogte);
-        bal["X"] = constrain(bal["X"], 0, dikte - this.breedte);
-        bal["Y"] = constrain(bal["Y"], 0, dunte - this.hoogte);
+        image(boot, schip['X'], schip['Y'], this.breedte, this.hoogte);
+        schip["X"] = constrain(schip["X"], 0, dikte - this.breedte);
+        schip["Y"] = constrain(schip["Y"], 0, dunte - this.hoogte);
     },
     beweeg() {
         if (keyIsDown(RIGHT_ARROW)) {
@@ -29,8 +29,8 @@ var bal = {
 };
 
 var hitbox = {
-    X: 300,
-    Y: 305,
+    X: 150,
+    Y: 155,
     breedte: 100,
     teken() {
         ellipse(this.X, this.Y, this.breedte)
@@ -61,7 +61,7 @@ var eiland = {
     hoogte: 50,
     benGeraakt: false,
 
-    wordJeGeraakt(bal) {
+    wordJeGeraakt(schip) {
         if (dist(this.x, this.y, hitbox.X, hitbox.Y) <= this.breedte / 2 + hitbox.breedte / 2) {
             this.benGeraakt = true;
         }
@@ -91,6 +91,25 @@ var boompie = {
     },
 }
 
+var rots = {
+    X: 300,
+    Y: 530,
+    hit: false,
+    breedte: 30,
+    hoogte: 45,
+    teken() {
+        image(steen, rots['X'], rots['Y'], this.breedte, this.hoogte);
+    },
+
+    dood() {
+        if (dist(this.X + 15, this.Y + 22, hitbox.X, hitbox.Y) <= this.breedte / 2 + hitbox.breedte / 2) {
+            this.hit = true;
+        }
+        else {
+            this.hit = false;
+        }
+    },
+}
 function preload() {
     palm = loadImage('images/palmboom.png');
     boot = loadImage('images/dikkevetteboot.png')
@@ -101,16 +120,24 @@ function preload() {
 function setup() {
     canvas = createCanvas(dikte, dunte);
     background('blue');
-    textSize(30);
+    textSize(100);
     canvas.parent('processing');
 }
 
 function draw() {
     background('blue');
-    bal.beweeg();
+    schip.beweeg();
     eiland.teken();
-    bal.teken();
-    eiland.wordJeGeraakt(bal);
+    schip.teken();
+    eiland.wordJeGeraakt(schip);
     hitbox.beweeg();
     boompie.teken();
+    rots.teken();
+    rots.dood();
+    if (rots.hit) {
+        background('red');
+        fill('black');
+        text("Game over!", 250, 450);
+        noLoop();
+    }
 }
