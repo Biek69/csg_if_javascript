@@ -91,15 +91,18 @@ var boompie = {
     },
 }
 
-var rots = {
-    X: 300,
-    Y: 500,
-    hit: false,
-    breedte: 30,
-    hoogte: 45,
+class rots {
+    constructor(x, y) {
+        this.X = x;
+        this.Y = y;
+        this.hit = false;
+        this.breedte = 30;
+        this.hoogte = 45;
+    }
+
     teken() {
         image(steen, rots['X'], rots['Y'], this.breedte, this.hoogte);
-    },
+    }
 
     dood() {
         if (dist(this.X + 15, this.Y + 22, hitbox.X, hitbox.Y) <= this.breedte / 2 + hitbox.breedte / 2) {
@@ -108,7 +111,7 @@ var rots = {
         else {
             this.hit = false;
         }
-    },
+    }
 }
 function preload() {
     palm = loadImage('images/palmboom.png');
@@ -122,6 +125,7 @@ function setup() {
     background('blue');
     textSize(100);
     canvas.parent('processing');
+    steen1 = new rots(200,400);
 }
 
 function draw() {
@@ -131,10 +135,10 @@ function draw() {
     eiland.teken();
     schip.teken();
     boompie.teken();
-    rots.teken();
-    rots.dood();
+    steen1.teken();
+    steen1.dood();
     eiland.wordJeGeraakt(schip);
-    if (rots.hit) {
+    if (steen1.hit) {
         background('red');
         fill('black');
         text("Game over!", 250, 450);
