@@ -1,4 +1,4 @@
-var speed = 10;
+var speed = 3;
 var dikte = 1000;
 var dunte = 800;
 var schip = {
@@ -93,7 +93,7 @@ var boompie = {
 
 var rots = {
     X: 300,
-    Y: 530,
+    Y: 500,
     hit: false,
     breedte: 30,
     hoogte: 45,
@@ -127,13 +127,13 @@ function setup() {
 function draw() {
     background('blue');
     schip.beweeg();
+    hitbox.beweeg();
     eiland.teken();
     schip.teken();
-    eiland.wordJeGeraakt(schip);
-    hitbox.beweeg();
     boompie.teken();
     rots.teken();
     rots.dood();
+    eiland.wordJeGeraakt(schip);
     if (rots.hit) {
         background('red');
         fill('black');
