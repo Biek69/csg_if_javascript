@@ -101,7 +101,7 @@ class rots {
     }
 
     teken() {
-        image(steen, rots['X'], rots['Y'], this.breedte, this.hoogte);
+        image(steen, this.X, this.Y, this.breedte, this.hoogte);
     }
 
     dood() {
@@ -125,20 +125,32 @@ function setup() {
     background('blue');
     textSize(100);
     canvas.parent('processing');
-    steen1 = new rots(200,400);
+    steen1 = new rots(random(0,970), random(0,755));
+    steen2 = new rots(random(0,970), random(0,755));
+    steen3 = new rots(random(0,970), random(0,755));
+    steen4 = new rots(random(0,970), random(0,755));
+    steen5 = new rots(random(0,970), random(0,755));
 }
 
 function draw() {
-    background('blue');
+    background(26,53,255);
     schip.beweeg();
     hitbox.beweeg();
     eiland.teken();
     schip.teken();
-    boompie.teken();
     steen1.teken();
+    steen2.teken();
+    steen3.teken();
+    steen4.teken();
+    steen5.teken();
+    boompie.teken();
     steen1.dood();
+    steen2.dood();
+    steen3.dood();
+    steen4.dood();
+    steen5.dood();
     eiland.wordJeGeraakt(schip);
-    if (steen1.hit) {
+    if (steen1.hit || steen2.hit || steen3.hit || steen4.hit || steen5.hit) {
         background('red');
         fill('black');
         text("Game over!", 250, 450);
